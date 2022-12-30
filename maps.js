@@ -1,0 +1,14 @@
+const mapContainer = document.querySelector('.google-map');
+const mapFrame = document.createElement('div');
+mapFrame.classList.add('map-frame');
+const mapIFrame = document.createElement('iframe');
+mapIFrame.src = 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2148.5441034736186!2d113.90571038290093!3d22.25793180820957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340158f577d8e91d%3A0x771695466285a370!2sAsian%20Institute%20of%20Applied%20Buddhism%2C%20Lotus%20Pond%20Temple!5e0!3m2!1sen!2shk!4v1595793486587!5m2!1sen!2shk';
+mapIFrame.width = 600;
+mapIFrame.height = 450;
+mapIFrame.frameBorder = 0;
+mapIFrame.style.border = 0;
+mapIFrame.allowFullscreen = true;
+mapIFrame.setAttribute('aria-hidden', 'false');
+mapIFrame.tabIndex = 0;
+mapFrame.appendChild(mapIFrame);
+mapContainer.appendChild(mapFrame);
