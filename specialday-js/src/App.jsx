@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useWindupString } from "windups";
+import { useWindupString, WindupChildren } from "windups";
+
 
 export default function App() {
   return (
@@ -12,8 +13,15 @@ export default function App() {
 
 const Wishes = () => {
   const [text] = useWindupString(
-    "This club admits only those wearing bright pink hats."
+    "Happy Birthday, my love! I hope you have a wonderful day",
+    {
+      pace: (char) => (char === " " ? 300 : 40),
+    }
   );
+
+
+
+  
 
   React.useEffect(() => {
     const el = document.getElementById("container");
@@ -27,7 +35,11 @@ const Wishes = () => {
       <div className="App">
         <div className="App-header">
           <h1>{text}</h1>
-          hello
+          <WindupChildren>
+            {"Hi my "}
+            <span style={{ color: "red" }}>{"love "}</span>
+            {"I love you"}
+          </WindupChildren>
         </div>
       </div>
     </>
