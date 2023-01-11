@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './pet.css';
-
+import React, { useRef, useEffect, useState } from "react";
+import "./pet.css";
 
 function Pet() {
   const [isWalking, setIsWalking] = useState(true);
@@ -9,27 +8,20 @@ function Pet() {
   useEffect(() => {
     let x = 0;
 
-    let xSpeed = 2;
-
+    let xSpeed = 1;
 
     function updatePosition() {
       x += xSpeed;
-
 
       if (x + petContainerRef.current.offsetWidth >= window.innerWidth) {
         xSpeed = -xSpeed;
       }
 
-
-
       if (x <= 0) {
         xSpeed = -xSpeed;
       }
 
-
-
       petContainerRef.current.style.left = `${x}px`;
-
 
       requestAnimationFrame(updatePosition);
     }
@@ -46,7 +38,12 @@ function Pet() {
   }
 
   return (
-    <div ref={petContainerRef} className="pet-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div
+      ref={petContainerRef}
+      className="pet-container"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {isWalking ? (
         <img src="/src/crab/idle2.gif" alt="Walking Pet" />
       ) : (
