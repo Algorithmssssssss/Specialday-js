@@ -8,7 +8,7 @@ function Pet() {
   useEffect(() => {
     let x = 0;
 
-    let xSpeed = 1;
+    let xSpeed = 0.5;
 
     function updatePosition() {
       x += xSpeed;
