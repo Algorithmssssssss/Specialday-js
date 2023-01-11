@@ -23,8 +23,8 @@ var arr_consoleCat = ["u", "v", "o", "U", "O", ".", "_", "V"];
 var arr_consoleCatEyes = ["o", "-"];
 
 //paths to images and sounds. if you move them, update the folder name here...
-var str_soundPath = "catjs/catjs_audio";
-var str_imagePath = "catjs/catjs_images";
+var str_soundPath = "src/catjs_audio";
+var str_imagePath = "src/catjs_images";
 
 //cat height & width (if you change the cat graphic you have to update these)
 var num_catWidth = 270;

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useState, handleClick } from "react";
 import { useWindupString, WindupChildren, Pace, CharWrapper } from "windups";
 
 export default function App() {
@@ -11,12 +12,10 @@ export default function App() {
 }
 
 const myComponentStyle = {
-  backgroundColor: 'pink',
-  fontFamily: 'Comic Sans MS',
-  height: '500px',
-
-
-}
+  backgroundColor: "pink",
+  fontFamily: "Comic Sans MS",
+  height: "500px",
+};
 
 const Wishes = () => {
   const [text] = useWindupString(
@@ -33,6 +32,18 @@ const Wishes = () => {
     }
   }, []);
 
+  const [petImage, setPetImage] = useState("idle1.gif");
+  const [position, setPosition] = useState({ x: 0 });
+
+  const movePet = () => {
+    setPosition(prevPosition => ({ x: prevPosition.x + 10 }));
+  }
+
+  const handleClick = () => {
+    const images = ["idle1.gif", "idle2.gif", "pet1.gif", "pet2.gif"];
+    setPetImage(images[Math.floor(Math.random() * images.length)]);
+  };
+
   return (
     <>
       <div className="App">
@@ -43,9 +54,22 @@ const Wishes = () => {
             <span style={{ color: "red" }}>{"love "}</span>
             {"I love you"}
             <Pace ms={100}>{" G-R-O-U-N-D-E-D."}</Pace>
-
           </WindupChildren>
         </div>
+      </div>
+      <div onClick={handleClick} style={{ position: 'absolute', bottom: '0px', left: '0px', right: '0px' }}>
+        <img
+          src={`src/crab/${petImage}`}
+          alt="Virtual pet"
+          style={{
+            position: 'absolute',
+            bottom: '0px',
+            left: `${position.x}px`,
+            animation: 'movement 10s infinite',
+            
+          }}
+          onAnimationIteration={movePet}
+        />
       </div>
     </>
   );
