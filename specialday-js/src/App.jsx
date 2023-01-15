@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useWindupString, WindupChildren, Pace } from "windups";
-import './wishes.css';
+import "./wishes.css";
+import Typical from "react-typical";
+import Bubble from "./textbub.jsx";
 
 export default function App() {
   return (
@@ -11,8 +13,6 @@ export default function App() {
   );
 }
 
-
-
 const Wishes = () => {
   const [text] = useWindupString(
     "Happy Birthday, my love! I hope you have a wonderful day",
@@ -20,6 +20,7 @@ const Wishes = () => {
       pace: (char) => (char === " " ? 500 : 40),
     }
   );
+
 
   React.useEffect(() => {
     const el = document.getElementById("container");
@@ -29,7 +30,9 @@ const Wishes = () => {
   }, []);
 
   return (
+    
     <>
+    
       <div className="App">
         <div className="App-header">
           <h1>{text}</h1>
@@ -37,11 +40,16 @@ const Wishes = () => {
             {"Hi my "}
             <span style={{ color: "red" }}>{"love "}</span>
             {"I love you"}
-            <Pace ms={100}>{" G-R-O-U-N-D-E-D."}</Pace>
+            
           </WindupChildren>
+          
         </div>
+        <WindupChildren>
+          <Pace ms={100}>{"It is your birthday! Would you look at that, this is cool website right love ? XD"}</Pace>
+        </WindupChildren>
+        <Bubble />
       </div>
-     
+      
     </>
   );
 };

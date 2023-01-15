@@ -1,41 +1,54 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./pet.css";
 
+
 function Pet() {
   const [isWalking, setIsWalking] = useState(true);
+  const [x, setX] = useState(0);
+  const [xSpeed, setXSpeed] = useState(0.01);
+  const [flip, setFlip] = useState(false);
   const petContainerRef = useRef(null);
-
-  useEffect(() => {
-    let x = 0;
-
-    let xSpeed = 0.5;
-
-    function updatePosition() {
-      x += xSpeed;
-
-      if (x + petContainerRef.current.offsetWidth >= window.innerWidth) {
-        xSpeed = -xSpeed;
-      }
-
-      if (x <= 0) {
-        xSpeed = -xSpeed;
-      }
-
-      petContainerRef.current.style.left = `${x}px`;
-
-      requestAnimationFrame(updatePosition);
-    }
-
-    updatePosition();
-  }, []);
-
   function handleMouseEnter() {
     setIsWalking(false);
+    // save the current position
+    setX(parseFloat(petContainerRef.current.style.left));
   }
 
   function handleMouseLeave() {
     setIsWalking(true);
+    // continue animation from the saved position
+    petContainerRef.current.style.left = x + "px";
   }
+
+  useEffect(() => {
+    let animationId;
+
+    function updatePosition() {
+      setX(prevX => prevX + xSpeed);
+
+      if (x + petContainerRef.current.offsetWidth >= window.innerWidth) {
+        setXSpeed(prevSpeed => -prevSpeed);
+        setFlip(prevFlip => !prevFlip);
+      }
+
+      if (x <= 0) {
+        setXSpeed(prevSpeed => -prevSpeed);
+        setFlip(prevFlip => !prevFlip);
+      }
+
+      petContainerRef.current.style.left = `${x}px`;
+
+      animationId = requestAnimationFrame(updatePosition);
+    }
+
+    if (isWalking) {
+      updatePosition();
+    }
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [isWalking, x, xSpeed, flip]);
 
   return (
     <div
@@ -45,7 +58,11 @@ function Pet() {
       onMouseLeave={handleMouseLeave}
     >
       {isWalking ? (
-        <img src="/src/crab/idle2.gif" alt="Walking Pet" />
+        <img
+          src={flip ? "/src/crab/idle2.gif" : "/src/crab/idle2.gif"}
+          alt="Walking Pet"
+          style={{ transform: flip ? "scaleX(-1)" : "" }}
+        />
       ) : (
         <img src="/src/crab/idle1.gif" alt="Hovering Pet" />
       )}
