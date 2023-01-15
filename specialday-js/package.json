@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@camwiegert/typical": "^0.1.1",
     "@rehooks/component-size": "^1.0.3",
     "linaria": "^4.1.10",
     "react": "^18.2.0",
+    "react-chat-bubble": "^0.8.7",
+    "react-chat-ui": "^0.4.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.6.1",
     "react-router-dom": "^6.6.1",
@@ -23,11 +26,9 @@
     "@vitejs/plugin-react": "^3.0.0",
     "vite": "^4.0.3"
   },
-  
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react",
-      "@linaria"
-    ]
-  
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@linaria"
+  ]
 }

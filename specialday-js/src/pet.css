@@ -1,3 +1,9 @@
 .pet-container {
-    position: absolute;
-  }
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.pet-container img {
+  width: 100px;
+  height: 100px;
+}
