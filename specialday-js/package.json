@@ -18,6 +18,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.6.1",
     "react-router-dom": "^6.6.1",
+    "react-spotify-web-playback": "^0.11.0",
     "windups": "^1.2.1"
   },
   "devDependencies": {
