@@ -59,12 +59,12 @@ function Pet() {
     >
       {isWalking ? (
         <img
-          src={flip ? "/src/crab/idle2.gif" : "/src/crab/idle2.gif"}
+          src={flip ? "/src/crab/dog_walk.gif" : "/src/crab/dog_walk.gif"}
           alt="Walking Pet"
           style={{ transform: flip ? "scaleX(-1)" : "" }}
         />
       ) : (
-        <img src="/src/crab/idle1.gif" alt="Hovering Pet" />
+        <img src="/src/crab/dog_swipe.gif" alt="Hovering Pet" />
       )}
     </div>
   );
