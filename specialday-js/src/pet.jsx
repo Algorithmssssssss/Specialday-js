@@ -3,71 +3,73 @@ import "./pet.css";
 
 
 function Pet() {
-  const [isWalking, setIsWalking] = useState(true);
-  const [x, setX] = useState(0);
-  const [xSpeed, setXSpeed] = useState(0.01);
-  const [flip, setFlip] = useState(false);
-  const petContainerRef = useRef(null);
-  function handleMouseEnter() {
-    setIsWalking(false);
-    // save the current position
-    setX(parseFloat(petContainerRef.current.style.left));
-  }
 
-  function handleMouseLeave() {
-    setIsWalking(true);
-    // continue animation from the saved position
-    petContainerRef.current.style.left = x + "px";
-  }
-
-  useEffect(() => {
-    let animationId;
-
-    function updatePosition() {
-      setX(prevX => prevX + xSpeed);
-
-      if (x + petContainerRef.current.offsetWidth >= window.innerWidth) {
-        setXSpeed(prevSpeed => -prevSpeed);
-        setFlip(prevFlip => !prevFlip);
-      }
-
-      if (x <= 0) {
-        setXSpeed(prevSpeed => -prevSpeed);
-        setFlip(prevFlip => !prevFlip);
-      }
-
-      petContainerRef.current.style.left = `${x}px`;
-
-      animationId = requestAnimationFrame(updatePosition);
+    const [isWalking, setIsWalking] = useState(true);
+    const [x, setX] = useState(0);
+    const [xSpeed, setXSpeed] = useState(0.01);
+    const [flip, setFlip] = useState(false);
+    const petContainerRef = useRef(null);
+    function handleMouseEnter() {
+      setIsWalking(false);
+      // save the current position
+      setX(parseFloat(petContainerRef.current.style.left));
     }
 
-    if (isWalking) {
-      updatePosition();
+    function handleMouseLeave() {
+      setIsWalking(true);
+      // continue animation from the saved position
+      petContainerRef.current.style.left = x + "px";
     }
 
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, [isWalking, x, xSpeed, flip]);
+    useEffect(() => {
+      let animationId;
 
-  return (
-    <div
-      ref={petContainerRef}
-      className="pet-container"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {isWalking ? (
-        <img
-          src={flip ? "/src/crab/dog_walk.gif" : "/src/crab/dog_walk.gif"}
-          alt="Walking Pet"
-          style={{ transform: flip ? "scaleX(-1)" : "" }}
-        />
-      ) : (
-        <img src="/src/crab/dog_swipe.gif" alt="Hovering Pet" />
-      )}
-    </div>
-  );
-}
+      function updatePosition() {
+        setX((prevX) => prevX + xSpeed);
+
+        if (x + petContainerRef.current.offsetWidth >= window.innerWidth) {
+          setXSpeed((prevSpeed) => -prevSpeed);
+          setFlip((prevFlip) => !prevFlip);
+        }
+
+        if (x <= 0) {
+          setXSpeed((prevSpeed) => -prevSpeed);
+          setFlip((prevFlip) => !prevFlip);
+        }
+
+        petContainerRef.current.style.left = `${x}px`;
+
+        animationId = requestAnimationFrame(updatePosition);
+      }
+
+      if (isWalking) {
+        updatePosition();
+      }
+
+      return () => {
+        cancelAnimationFrame(animationId);
+      };
+    }, [isWalking, x, xSpeed, flip]);
+
+    return (
+      <div
+        ref={petContainerRef}
+        className="pet-container"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {isWalking ? (
+          <img
+            src={flip ? "/src/crab/dog_walk.gif" : "/src/crab/dog_walk.gif"}
+            alt="Walking Pet"
+            style={{ transform: flip ? "scaleX(-1)" : "" }}
+          />
+        ) : (
+          <img src="/src/crab/dog_swipe.gif" alt="Hovering Pet" />
+        )}
+      </div>
+    );
+  };
+
 
 export default Pet;
