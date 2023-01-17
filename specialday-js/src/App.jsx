@@ -10,7 +10,7 @@ import Chat from "./chat";
 export default function App() {
   return (
     <Routes>
-      <Route path="wishes" element={[<Wishes />, <Chat />, <Pet />]} />
+      <Route path="wishes" element={[<Wishes />]} />
     </Routes>
   );
 }
@@ -66,6 +66,8 @@ const Wishes = () => {
           </Pace>
         </WindupChildren>
       </div>
+      <Chat/>
+      <Pet/>
     </>
   );
 };

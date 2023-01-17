@@ -30,7 +30,7 @@ const greenBubble = css`
   padding: 12px;
   color: white;
   border-radius: 3px;
-  background-color: green;
+  background-color: pink;
   transform: skew(-5deg, -3deg);
   display: inline-block;
   white-space: pre-wrap;
@@ -59,9 +59,9 @@ export const SpeechBubbleA = ({ text, onFinished }) => {
 const pinkBubble = css`
   font-family: "Menlo", monospace;
   padding: 12px;
-  color: black;
+  color: white;
   border-radius: 3px;
-  background-color: pink;
+  background-color: purple;
   transform: skew(5deg, 3deg);
   display: inline-block;
   white-space   : pre;
@@ -129,6 +129,12 @@ const Chat = ({ onFinished }) => {
       {linesToShow >= 4 && (
         <SpeechBubbleB
           text={"Yes my love, I did code you a little pet dog hehehe"}
+          onFinished={() => setLines(5)}
+        />
+      )}
+      {linesToShow >= 5 && (
+        <SpeechBubbleA
+          text={"Test"}
           onFinished={onFinished}
         />
       )}
