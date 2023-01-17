@@ -4,7 +4,6 @@ import { useWindupString, WindupChildren, Pace } from "windups";
 import "./wishes.css";
 import Pet from "./pet";
 import SpotifyPlayer from "react-spotify-web-playback";
-import SpotifyLogin from "./token";
 import Chat from "./chat";
 
 export default function App() {
@@ -20,6 +19,8 @@ const Wishes = () => {
     pace: (char) => (char === " " ? 100 : 100),
   });
 
+  
+
   React.useEffect(() => {
     const el = document.getElementById("container");
     if (el) {
@@ -33,7 +34,7 @@ const Wishes = () => {
         <SpotifyPlayer
           name="Her special website"
           autoPlay={true}
-          token="BQBQ_F2n0zWiyQTOy012nTHa51Ppv21QqsFyHj7yyie-w1ON0dMdyX0Wdk7KYfxnejSn4qnQbuAvdud2UgHL4fDw9tp7LPvHahIANu4eGt2yGMjNbZCFz_IS5gufiLGYdOp-sTOWgo7Bhxu51L3VCoZ2G2c0Dxx054N9eGZ67Q7dqA82QT4JH0VR7Wom9x7cg-IQ5fCGTCy-tk-5Bxx1stSSLxk5F0N0vV61IimKl7I92LKRbg"
+          token="BQA0MF70W4pGQS1eJIXP77wDtL5fSApfTC5mbMjMPT3mhde5YhA8mpaXGlFfhuwI4EHQ9No8GsjljD31YNSZj4W13stm987mIj5CKA5YQl4iZE8TMn-Ac7sxVD-vVzfCSN_u7JUpVRuB3WQMqdEIdXWyn88x4d04JHu5-CR0Jp6YWtt-FcUHnGyXqBalFxGGxD-lVixkfW89gFuXsExe-q62pKVKtjxW9qyzYNr6cRdfbfUJ2Q"
           uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
           initialVolume={0.1}
           styles={{
@@ -52,21 +53,22 @@ const Wishes = () => {
       <div className="App">
         <div className="App-header">
           <h1>{text}</h1>
-          <WindupChildren>
+          {/* <WindupChildren>
             {"Hi my "}
             <span style={{ color: "red" }}>{"love "}</span>
             {"I love you"}
-          </WindupChildren>
+          </WindupChildren> */}
         </div>
-        <WindupChildren>
+        {/* <WindupChildren>
           <Pace ms={100}>
             {
               "It is your birthday! Would you look at that, this is a cool website right love ? XD"
             }
           </Pace>
-        </WindupChildren>
+        </WindupChildren> */}
       </div>
       <Chat/>
+      
       <Pet/>
     </>
   );

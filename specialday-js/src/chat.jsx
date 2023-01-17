@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { CharWrapper, WindupChildren, Linebreaker } from "windups";
 import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
+import NextButton from "./button";
 
 
 const chatChar = css`
@@ -24,10 +25,9 @@ const SpeechBubbleChar = ({ children }) => {
   return <span className={chatChar}>{children}</span>;
 };
 
-
 const greenBubble = css`
   font-family: "Menlo", monospace;
-  padding: 12px;
+  padding: 10px;
   color: white;
   border-radius: 3px;
   background-color: pink;
@@ -52,19 +52,20 @@ export const SpeechBubbleA = ({ text, onFinished }) => {
           </div>
         </WindupChildren>
       </Linebreaker>
+      <div></div>
     </div>
   );
 };
 
 const pinkBubble = css`
   font-family: "Menlo", monospace;
-  padding: 12px;
+  padding: 10px;
   color: white;
   border-radius: 3px;
   background-color: purple;
   transform: skew(5deg, 3deg);
   display: inline-block;
-  white-space   : pre;
+  white-space: pre;
   font-size: 24px;
   align-self: flex-end;
   box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.05);
@@ -88,6 +89,7 @@ export const SpeechBubbleB = ({ text, onFinished }) => {
           </div>
         </WindupChildren>
       </div>
+      <div></div>
     </Linebreaker>
   );
 };
@@ -97,7 +99,6 @@ const chatRoot = css`
   flex-direction: column;
   max-width: 50em;
 `;
-
 
 const Chat = ({ onFinished }) => {
   const [linesToShow, setLinesToShow] = useState(1);
@@ -110,10 +111,8 @@ const Chat = ({ onFinished }) => {
 
   return (
     <div className={chatRoot}>
-      <SpeechBubbleA
-        text={"Give me hint"}
-        onFinished={() => setLines(2)}
-      />
+      <SpeechBubbleA text={"Give me hint"} onFinished={() => setLines(2)} />
+      <div></div>
       {linesToShow >= 2 && (
         <SpeechBubbleB
           text={"You can interact with it"}
@@ -122,20 +121,18 @@ const Chat = ({ onFinished }) => {
       )}
       {linesToShow >= 3 && (
         <SpeechBubbleA
-          text={"Are u going to code me a little dog"}
+          text={"Are u going to code me a little dog?"}
           onFinished={() => setLines(4)}
         />
       )}
       {linesToShow >= 4 && (
-        <SpeechBubbleB
-          text={"Yes my love, I did code you a little pet dog hehehe"}
-          onFinished={() => setLines(5)}
-        />
+        <SpeechBubbleB text={"Yes my love."} onFinished={() => setLines(5)} />
       )}
       {linesToShow >= 5 && (
-        <SpeechBubbleA
-          text={"Test"}
+        <SpeechBubbleB
+          text={"I did code you a little pet dog hehehe"}
           onFinished={onFinished}
+          
         />
       )}
     </div>
@@ -143,5 +140,3 @@ const Chat = ({ onFinished }) => {
 };
 
 export default Chat;
-
-
