@@ -1,11 +1,14 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useWindupString, WindupChildren, Pace } from "windups";
 import "./wishes.css";
 import Pet from "./pet";
+
 import SpotifyPlayer from "react-spotify-web-playback";
 import Chat from "./chat";
 import { css } from "linaria";
+
 
 export default function App() {
   return (
@@ -61,12 +64,23 @@ const NextButtonStyles = css`
   }
 `;
 
+
+
 const Wishes = () => {
   const [text] = useWindupString("Happy Birthday, my love <3", {
     pace: (char) => (char === " " ? 100 : 100),
   });
 
-  
+  const [showButton, setShowButton] = useState(false);
+  const [chatDone, setChatDone] = useState(true);
+
+function handleClick() {
+  setShowButton(true);
+}
+
+function handleChatDone() {
+  setChatDone(false);
+}
 
   React.useEffect(() => {
     const el = document.getElementById("container");
@@ -81,7 +95,7 @@ const Wishes = () => {
         <SpotifyPlayer
           name="Her special website"
           autoPlay={true}
-          token="BQA0MF70W4pGQS1eJIXP77wDtL5fSApfTC5mbMjMPT3mhde5YhA8mpaXGlFfhuwI4EHQ9No8GsjljD31YNSZj4W13stm987mIj5CKA5YQl4iZE8TMn-Ac7sxVD-vVzfCSN_u7JUpVRuB3WQMqdEIdXWyn88x4d04JHu5-CR0Jp6YWtt-FcUHnGyXqBalFxGGxD-lVixkfW89gFuXsExe-q62pKVKtjxW9qyzYNr6cRdfbfUJ2Q"
+          token="BQBsoImT2R_yUyiDbUriM4KYZ0_C2N4sXRzTsocAnB0Jr4coDMpGvNaZHhHnJrJswrQruaPeuDypPDT6gR83M7p4rr1U5Zg1bd-3nqOo_nQcwkU2LsdugYigceqapg3IVTM1E7Vk_CRbKjooIufwWBkQt9_wvQbAl1Hs3kVUxsTcBBqgHgis79ubm3bPKDtWHWaZ51Xa_I8Ugdv2FGtG0XD6_i1_H6hluKx0tg2nQtr5-ys7KQ"
           uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
           initialVolume={0.1}
           styles={{
@@ -114,14 +128,14 @@ const Wishes = () => {
           </Pace>
         </WindupChildren> */}
       </div>
-      <Chat/>
-      <div className={NextButtonStyles}>
-        <button>
+      <Chat onDone={handleChatDone} />
+      {showButton ? <div className={NextButtonStyles}>
+        <button onClick={handleClick}>
           {"Next"}
         </button>
-      </div>
+      </div> : <Pet />}
+
       
-      <Pet/>
     </>
   );
 };
