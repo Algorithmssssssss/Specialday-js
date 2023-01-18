@@ -4,7 +4,6 @@ import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
 import NextButton from "./button";
 
-
 const chatChar = css`
   @keyframes enter {
     from {
@@ -20,6 +19,8 @@ const chatChar = css`
   animation-duration: 150ms;
   display: inline-block;
 `;
+
+
 
 const SpeechBubbleChar = ({ children }) => {
   return <span className={chatChar}>{children}</span>;
@@ -132,9 +133,9 @@ const Chat = ({ onFinished }) => {
         <SpeechBubbleB
           text={"I did code you a little pet dog hehehe"}
           onFinished={onFinished}
-          
         />
       )}
+      
     </div>
   );
 };

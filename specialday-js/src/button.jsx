@@ -32,4 +32,6 @@ const NextButton = styled.button`
     border-color: Green;
   }
 `
+
+
 export default NextButton;

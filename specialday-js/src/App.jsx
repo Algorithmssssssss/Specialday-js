@@ -5,6 +5,7 @@ import "./wishes.css";
 import Pet from "./pet";
 import SpotifyPlayer from "react-spotify-web-playback";
 import Chat from "./chat";
+import { css } from "linaria";
 
 export default function App() {
   return (
@@ -13,6 +14,52 @@ export default function App() {
     </Routes>
   );
 }
+
+const NextButtonStyles = css`
+  @keyframes drift {
+    100% {
+      background-position: 111px 73px;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation-name: drift, fade-in;
+  animation-duration: 5s, 100ms;
+  animation-iteration-count: infinite, 1;
+  animation-timing-function: linear;
+  display: inline-block;
+  height: 48px;
+  border-radius: 5px;
+  border: 2px solid #616161;
+  background-image: url("./src/topography.svg");
+  background-color: lightgrey;
+  width: 10%;
+  font-size: 1em;
+  font-family: "Menlo", monospace;
+  margin-top: 16px;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.05);
+  transition: transform 200ms;
+  appearance: none;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus {
+    color: green;
+    border-color: green;
+  }
+`;
 
 const Wishes = () => {
   const [text] = useWindupString("Happy Birthday, my love <3", {
@@ -68,6 +115,11 @@ const Wishes = () => {
         </WindupChildren> */}
       </div>
       <Chat/>
+      <div className={NextButtonStyles}>
+        <button>
+          {"Next"}
+        </button>
+      </div>
       
       <Pet/>
     </>
