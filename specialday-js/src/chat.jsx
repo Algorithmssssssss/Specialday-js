@@ -104,12 +104,17 @@ const chatRoot = css`
 
 const Chat = ({ onFinished }) => {
   const [linesToShow, setLinesToShow] = useState(1);
+  const [pet, setPet] = useState(false);
 
   const setLines = (num) => {
     setTimeout(() => {
       setLinesToShow(num);
     }, 1100);
   };
+
+  const truePet = () => {
+    setPet(true);
+  }
   
 
   return (
@@ -134,7 +139,10 @@ const Chat = ({ onFinished }) => {
       {linesToShow >= 5 && (
         <SpeechBubbleB
           text={"I did code you a little pet dog hehehe"}
-          onFinished={() => <Pet/> }
+          onFinished={() => truePet }
+          {pet && (
+            <Pet />
+          )}
           
         />
         
