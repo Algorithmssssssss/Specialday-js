@@ -1,5 +1,6 @@
 .pet-container {
   position: absolute;
+  bottom: 0;
 
 }
 .pet-container img {

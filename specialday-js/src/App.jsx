@@ -5,11 +5,11 @@ import { useWindupString, WindupChildren, Pace } from "windups";
 import "./wishes.css";
 import Pet from "./pet";
 import Picture from "./picture";
-import useWindowSize from 'react-use/lib/useWindowSize';
+
 import SpotifyPlayer from "react-spotify-web-playback";
 import Chat from "./chat";
 import { css } from "linaria";
-import Confetti from 'react-confetti';
+
 import "./glowingbutton.css";
 
 export default function App() {
@@ -75,7 +75,7 @@ const Wishes = () => {
   const [showButton2, setShowButton2] = useState(true);
   const [chatDone, setChatDone] = useState(false);
   const [chatCompleted, setChatCompleted] = useState(false);
-  const { width, height } = useWindowSize()
+  
 
   function handleClick() {
     setShowButton(false);
@@ -123,12 +123,7 @@ const Wishes = () => {
 
       <div className="App">
         <div className="App-header">
-        <Confetti
-      width={width}
-      height={height}
-      numberOfPieces={200}
-      tweenDuration = {1000}
-    />
+        
           <h1>{text}</h1>
         </div>
       </div>
@@ -137,7 +132,7 @@ const Wishes = () => {
 
       {showButton ? (
         <div>
-          <button onClick={handleClick}>{"Next"}</button>
+          <button className="big-button" onClick={handleClick}>{"Next"}</button>
         </div>
       ) : (
         <Chat />

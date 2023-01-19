@@ -4,6 +4,8 @@ import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
 import NextButton from "./button";
 import Pet from "./pet";
+import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
 const chatChar = css`
   @keyframes enter {
     from {
@@ -102,9 +104,17 @@ const chatRoot = css`
   max-width: 50em;
 `;
 
+const petRoot = css`
+  position: absolute;
+  bottom: 0;
+`;
+
 const Chat = ({ onFinished }) => {
   const [linesToShow, setLinesToShow] = useState(1);
   const [pet, setPet] = useState(false);
+  const { width, height } = useWindowSize()
+
+  console.log(pet)
 
   const setLines = (num) => {
     setTimeout(() => {
@@ -119,6 +129,12 @@ const Chat = ({ onFinished }) => {
 
   return (
     <div className={chatRoot}>
+      <Confetti
+        width={width}
+        height={height}
+        numberOfPieces={200}
+        tweenDuration = {1000}
+      />
       <SpeechBubbleA text={"Give me hint"} onFinished={() => setLines(2)} />
       <div></div>
       {linesToShow >= 2 && (
@@ -139,14 +155,20 @@ const Chat = ({ onFinished }) => {
       {linesToShow >= 5 && (
         <SpeechBubbleB
           text={"I did code you a little pet dog hehehe"}
-          onFinished={() => truePet }
-          {pet && (
-            <Pet />
-          )}
+          onFinished={() => setTimeout(() => {
+            setPet(true);
+          }, 700) }
+          
           
         />
         
+        
       )}
+      {pet && (
+        <div className="petRoot">
+          <Pet />
+        </div>
+        )}
       
       
     </div>
