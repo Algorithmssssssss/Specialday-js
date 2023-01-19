@@ -109,6 +109,7 @@ const Chat = ({ onFinished }) => {
       setLinesToShow(num);
     }, 300);
   };
+  
 
   return (
     <div className={chatRoot}>
@@ -132,7 +133,7 @@ const Chat = ({ onFinished }) => {
       {linesToShow >= 5 && (
         <SpeechBubbleB
           text={"I did code you a little pet dog hehehe"}
-          onFinished={onFinished}
+          onFinished={() => onFinished}
         />
       )}
       

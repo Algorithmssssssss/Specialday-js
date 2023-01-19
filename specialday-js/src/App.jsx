@@ -10,6 +10,7 @@ import Chat from "./chat";
 import { css } from "linaria";
 
 
+
 export default function App() {
   return (
     <Routes>
@@ -71,15 +72,16 @@ const Wishes = () => {
     pace: (char) => (char === " " ? 100 : 100),
   });
 
-  const [showButton, setShowButton] = useState(false);
-  const [chatDone, setChatDone] = useState(true);
+  const [showButton, setShowButton] = useState(true);
+  const [chatDone, setChatDone] = useState(false);
+  const [chatCompleted, setChatCompleted] = useState(false);
 
 function handleClick() {
-  setShowButton(true);
+  setShowButton(false);
 }
 
 function handleChatDone() {
-  setChatDone(false);
+  setChatDone(true);
 }
 
   React.useEffect(() => {
@@ -114,22 +116,12 @@ function handleChatDone() {
       <div className="App">
         <div className="App-header">
           <h1>{text}</h1>
-          {/* <WindupChildren>
-            {"Hi my "}
-            <span style={{ color: "red" }}>{"love "}</span>
-            {"I love you"}
-          </WindupChildren> */}
         </div>
-        {/* <WindupChildren>
-          <Pace ms={100}>
-            {
-              "It is your birthday! Would you look at that, this is a cool website right love ? XD"
-            }
-          </Pace>
-        </WindupChildren> */}
+
       </div>
-      <Chat onDone={handleChatDone} />
-      {showButton ? <div className={NextButtonStyles}>
+      <Chat onComplete={() => setChatCompleted(true)} />
+      {chatCompleted && <button>Next</button>}
+      {showButton? <div className={NextButtonStyles}>
         <button onClick={handleClick}>
           {"Next"}
         </button>
