@@ -4,12 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import { useWindupString, WindupChildren, Pace } from "windups";
 import "./wishes.css";
 import Pet from "./pet";
+import Picture from "./picture";
 
 import SpotifyPlayer from "react-spotify-web-playback";
 import Chat from "./chat";
 import { css } from "linaria";
-
-
 
 export default function App() {
   return (
@@ -65,24 +64,30 @@ const NextButtonStyles = css`
   }
 `;
 
-
-
 const Wishes = () => {
   const [text] = useWindupString("Happy Birthday, my love <3", {
     pace: (char) => (char === " " ? 100 : 100),
   });
 
   const [showButton, setShowButton] = useState(true);
+  const [showButton2, setShowButton2] = useState(true);
   const [chatDone, setChatDone] = useState(false);
   const [chatCompleted, setChatCompleted] = useState(false);
 
-function handleClick() {
-  setShowButton(false);
-}
+  function handleClick() {
+    setShowButton(false);
+    setChatCompleted(true);
+  }
 
-function handleChatDone() {
-  setChatDone(true);
-}
+  function handleClick2() {
+    setShowButton2(false);
+  }
+
+  function handleChatDone() {
+    setChatDone(true);
+  }
+
+  
 
   React.useEffect(() => {
     const el = document.getElementById("container");
@@ -91,13 +96,13 @@ function handleChatDone() {
     }
   }, []);
 
-  return (
+    return (
     <>
       <div className="Spotify">
         <SpotifyPlayer
           name="Her special website"
           autoPlay={true}
-          token="BQA0MF70W4pGQS1eJIXP77wDtL5fSApfTC5mbMjMPT3mhde5YhA8mpaXGlFfhuwI4EHQ9No8GsjljD31YNSZj4W13stm987mIj5CKA5YQl4iZE8TMn-Ac7sxVD-vVzfCSN_u7JUpVRuB3WQMqdEIdXWyn88x4d04JHu5-CR0Jp6YWtt-FcUHnGyXqBalFxGGxD-lVixkfW89gFuXsExe-q62pKVKtjxW9qyzYNr6cRdfbfUJ2Q"
+          token="BQDEZajPciuzdBdgxtLOR2kZdmi_ki-AHTbfz-8vahVWn-jd2bDyvAz4-eaI1zBF35JV6n1BpVRv7XrtXv_OPBek0ZLyRH3RG9MwI46s3O3Bmj3QGQZjwvgOzmUerFBf0nZJrfb1KKXaKTu9u9qrVskqEnm98bOdD_91sLy-bOlx6fQCRSh06ZCB6tK7xKvL1nsSm_XPXRN_e3oO0vrNAFMo-hgHFcbchYTVwiQ3pDzBtlaz1Q"
           uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
           initialVolume={0.1}
           styles={{
@@ -117,17 +122,24 @@ function handleChatDone() {
         <div className="App-header">
           <h1>{text}</h1>
         </div>
-
       </div>
-      <Chat onComplete={() => setChatCompleted(true)} />
-      {chatCompleted && <button>Next</button>}
-      {showButton? <div className={NextButtonStyles}>
-        <button onClick={handleClick}>
-          {"Next"}
-        </button>
-      </div> : <Pet />}
 
-      
+      <Chat onComplete={() => setChatCompleted(true)} />
+
+      {showButton ? (
+        <div className={NextButtonStyles}>
+          <button onClick={handleClick}>{"Next"}</button>
+        </div>
+      ) : (
+        <Pet />
+      )}
+      {chatCompleted ? (
+      <div className={NextButtonStyles}>
+        <button onClick={handleClick2}>{"Next"}</button>
+      </div>
+    ) : (
+      <Picture />
+    )}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { CharWrapper, WindupChildren, Linebreaker } from "windups";
+import { CharWrapper, WindupChildren, Linebreaker, Effect } from "windups";
 import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
 import NextButton from "./button";
@@ -16,7 +16,7 @@ const chatChar = css`
     }
   }
   animation-name: enter;
-  animation-duration: 150ms;
+  animation-duration: 600ms;
   display: inline-block;
 `;
 
@@ -87,6 +87,7 @@ export const SpeechBubbleB = ({ text, onFinished }) => {
         <WindupChildren onFinished={onFinished}>
           <div className={pinkBubble}>
             <CharWrapper element={SpeechBubbleChar}>{text}</CharWrapper>
+            
           </div>
         </WindupChildren>
       </div>
@@ -134,7 +135,9 @@ const Chat = ({ onFinished }) => {
         <SpeechBubbleB
           text={"I did code you a little pet dog hehehe"}
           onFinished={() => onFinished}
+          
         />
+        
       )}
       
     </div>
