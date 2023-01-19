@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import { CharWrapper, WindupChildren, Linebreaker, Effect } from "windups";
 import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
-import NextButton from "./button";
 import Pet from "./pet";
-import Confetti from 'react-confetti';
-import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Chat2 from "./Note";
+import "./button1.css";
+
 const chatChar = css`
   @keyframes enter {
     from {
@@ -22,8 +24,6 @@ const chatChar = css`
   display: inline-block;
 `;
 
-
-
 const SpeechBubbleChar = ({ children }) => {
   return <span className={chatChar}>{children}</span>;
 };
@@ -32,7 +32,7 @@ const greenBubble = css`
   font-family: "Menlo", monospace;
   padding: 10px;
   color: white;
-  border-radius: 3px;
+  border-radius: 31px;
   background-color: pink;
   transform: skew(-5deg, -3deg);
   display: inline-block;
@@ -64,7 +64,7 @@ const pinkBubble = css`
   font-family: "Menlo", monospace;
   padding: 10px;
   color: white;
-  border-radius: 3px;
+  border-radius: 31px;
   background-color: purple;
   transform: skew(5deg, 3deg);
   display: inline-block;
@@ -89,7 +89,6 @@ export const SpeechBubbleB = ({ text, onFinished }) => {
         <WindupChildren onFinished={onFinished}>
           <div className={pinkBubble}>
             <CharWrapper element={SpeechBubbleChar}>{text}</CharWrapper>
-            
           </div>
         </WindupChildren>
       </div>
@@ -112,9 +111,18 @@ const petRoot = css`
 const Chat = ({ onFinished }) => {
   const [linesToShow, setLinesToShow] = useState(1);
   const [pet, setPet] = useState(false);
-  const { width, height } = useWindowSize()
+  const { width, height } = useWindowSize();
+  const [showChat2, setShowChat2] = useState(false);
 
-  console.log(pet)
+  const [showButton, setShowButton] = useState(false);
+
+  function handleClick() {
+    setShowButton(false);
+    setShowChat2(true);
+  }
+
+  console.log("Show chat", showChat2);
+  console.log("Show button", showButton);
 
   const setLines = (num) => {
     setTimeout(() => {
@@ -122,55 +130,62 @@ const Chat = ({ onFinished }) => {
     }, 1100);
   };
 
-  const truePet = () => {
-    setPet(true);
-  }
-  
-
   return (
-    <div className={chatRoot}>
-      <Confetti
-        width={width}
-        height={height}
-        numberOfPieces={200}
-        tweenDuration = {1000}
-      />
-      <SpeechBubbleA text={"Give me hint"} onFinished={() => setLines(2)} />
-      <div></div>
-      {linesToShow >= 2 && (
-        <SpeechBubbleB
-          text={"You can interact with it"}
-          onFinished={() => setLines(3)}
-        />
-      )}
-      {linesToShow >= 3 && (
-        <SpeechBubbleA
-          text={"Are u going to code me a little dog?"}
-          onFinished={() => setLines(4)}
-        />
-      )}
-      {linesToShow >= 4 && (
-        <SpeechBubbleB text={"Yes my love."} onFinished={() => setLines(5)} />
-      )}
-      {linesToShow >= 5 && (
-        <SpeechBubbleB
-          text={"I did code you a little pet dog hehehe"}
-          onFinished={() => setTimeout(() => {
-            setPet(true);
-          }, 700) }
-          
-          
-        />
-        
-        
-      )}
-      {pet && (
-        <div className="petRoot">
-          <Pet />
-        </div>
+    <div className={chatRoot} onFinished={() => setShowButton(true)}>
+      <div id="firstChat">
+        <Confetti id="confetti" numberOfPieces={100} tweenDuration={1000} />
+        <SpeechBubbleA text={"Give me hint"} onFinished={() => setLines(2)} />
+        <div></div>
+        {linesToShow >= 2 && (
+          <SpeechBubbleB
+            text={"You can interact with it"}
+            onFinished={() => setLines(3)}
+          />
         )}
-      
-      
+        {linesToShow >= 3 && (
+          <SpeechBubbleA
+            text={"Are u going to code me a little dog?"}
+            onFinished={() => setLines(4)}
+          />
+        )}
+        {linesToShow >= 4 && (
+          <SpeechBubbleB text={"Yes my love."} onFinished={() => setLines(5)} />
+        )}
+        {linesToShow >= 5 && (
+          <SpeechBubbleB
+            text={"I did code you a little pet dog hehehe"}
+            onFinished={() =>
+              setTimeout(() => {
+                setPet(true);
+                setTimeout(() => {
+                  setShowButton(true);
+                }, 700);
+              }, 800)
+            }
+          />
+        )}
+      </div>
+      <div>
+        {pet && (
+          <div className="petRoot">
+            <Pet onFinished={() => setShowButton(true)} />
+          </div>
+        )}
+
+        {showButton && (
+          <div>
+            <button className="big-button" onClick={handleClick}>
+              {"Read Our Chat"}
+            </button>
+          </div>
+        )}
+
+        {showChat2 && (
+          <div>
+            <Chat2 />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
