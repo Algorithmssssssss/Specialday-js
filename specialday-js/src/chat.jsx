@@ -3,7 +3,7 @@ import { CharWrapper, WindupChildren, Linebreaker, Effect } from "windups";
 import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
 import NextButton from "./button";
-
+import Pet from "./pet";
 const chatChar = css`
   @keyframes enter {
     from {
@@ -108,7 +108,7 @@ const Chat = ({ onFinished }) => {
   const setLines = (num) => {
     setTimeout(() => {
       setLinesToShow(num);
-    }, 300);
+    }, 1100);
   };
   
 
@@ -134,11 +134,12 @@ const Chat = ({ onFinished }) => {
       {linesToShow >= 5 && (
         <SpeechBubbleB
           text={"I did code you a little pet dog hehehe"}
-          onFinished={() => onFinished}
+          onFinished={() => <Pet/> }
           
         />
         
       )}
+      
       
     </div>
   );
