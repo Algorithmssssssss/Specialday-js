@@ -5,10 +5,12 @@ import { useWindupString, WindupChildren, Pace } from "windups";
 import "./wishes.css";
 import Pet from "./pet";
 import Picture from "./picture";
-
+import useWindowSize from 'react-use/lib/useWindowSize';
 import SpotifyPlayer from "react-spotify-web-playback";
 import Chat from "./chat";
 import { css } from "linaria";
+import Confetti from 'react-confetti';
+import "./glowingbutton.css";
 
 export default function App() {
   return (
@@ -18,51 +20,51 @@ export default function App() {
   );
 }
 
-const NextButtonStyles = css`
-  @keyframes drift {
-    100% {
-      background-position: 111px 73px;
-    }
-  }
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  animation-name: drift, fade-in;
-  animation-duration: 5s, 100ms;
-  animation-iteration-count: infinite, 1;
-  animation-timing-function: linear;
-  display: inline-block;
-  height: 48px;
-  border-radius: 5px;
-  border: 2px solid #616161;
-  background-image: url("./src/topography.svg");
-  background-color: lightgrey;
-  width: 10%;
-  font-size: 1em;
-  font-family: "Menlo", monospace;
-  margin-top: 16px;
-  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.05);
-  transition: transform 200ms;
-  appearance: none;
+// const NextButtonStyles = css`
+//   @keyframes drift {
+//     100% {
+//       background-position: 111px 73px;
+//     }
+//   }
+//   @keyframes fade-in {
+//     from {
+//       opacity: 0;
+//     }
+//     to {
+//       opacity: 1;
+//     }
+//   }
+//   animation-name: drift, fade-in;
+//   animation-duration: 5s, 100ms;
+//   animation-iteration-count: infinite, 1;
+//   animation-timing-function: linear;
+//   display: inline-block;
+//   height: 48px;
+//   border-radius: 5px;
+//   border: 2px solid #616161;
+//   background-image: url("./src/topography.svg");
+//   background-color: lightgrey;
+//   width: 10%;
+//   font-size: 1em;
+//   font-family: "Menlo", monospace;
+//   margin-top: 16px;
+//   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.05);
+//   transition: transform 200ms;
+//   appearance: none;
 
-  &:hover {
-    transform: scale(1.02);
-  }
+//   &:hover {
+//     transform: scale(1.02);
+//   }
 
-  &:active {
-    transform: scale(0.98);
-  }
+//   &:active {
+//     transform: scale(0.98);
+//   }
 
-  &:focus {
-    color: green;
-    border-color: green;
-  }
-`;
+//   &:focus {
+//     color: green;
+//     border-color: green;
+//   }
+// `;
 
 const Wishes = () => {
   const [text] = useWindupString("Happy Birthday, my love <3", {
@@ -73,6 +75,7 @@ const Wishes = () => {
   const [showButton2, setShowButton2] = useState(true);
   const [chatDone, setChatDone] = useState(false);
   const [chatCompleted, setChatCompleted] = useState(false);
+  const { width, height } = useWindowSize()
 
   function handleClick() {
     setShowButton(false);
@@ -120,26 +123,32 @@ const Wishes = () => {
 
       <div className="App">
         <div className="App-header">
+        <Confetti
+      width={width}
+      height={height}
+      numberOfPieces={200}
+      tweenDuration = {1000}
+    />
           <h1>{text}</h1>
         </div>
       </div>
 
-      <Chat onComplete={() => setChatCompleted(true)} />
+      {/* <Chat onComplete={() => setChatCompleted(true)} /> */}
 
       {showButton ? (
-        <div className={NextButtonStyles}>
+        <div>
           <button onClick={handleClick}>{"Next"}</button>
         </div>
       ) : (
-        <Pet />
+        <Chat />
       )}
-      {chatCompleted ? (
-      <div className={NextButtonStyles}>
+      {/* {chatCompleted ? (
+      <div>
         <button onClick={handleClick2}>{"Next"}</button>
       </div>
     ) : (
       <Picture />
-    )}
+    )} */}
     </>
   );
 };
