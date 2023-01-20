@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./pet.css";
+import walkImg from "/src/crab/dog_walk.gif";
+import swipeImg from "/src/crab/dog_swipe.gif";
 
 
 function Pet() {
@@ -60,12 +62,12 @@ function Pet() {
       >
         {isWalking ? (
           <img
-            src={flip ? "/src/crab/dog_walk.gif" : "/src/crab/dog_walk.gif"}
+            src={flip ? walkImg : walkImg}
             alt="Walking Pet"
             style={{ transform: flip ? "scaleX(-1)" : "" }}
           />
         ) : (
-          <img src="/src/crab/dog_swipe.gif" alt="Hovering Pet" />
+          <img src={swipeImg} alt="Hovering Pet" />
         )}
       </div>
     );
