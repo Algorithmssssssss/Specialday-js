@@ -200,7 +200,7 @@ const Chat2 = ({ onFinished }) => {
       {linesToShow >= 5 && (
         <SpeechBubbleC
 
-          picture={"/src/images/1.jpg"}
+          picture={"/src/images/1.png"}
           onFinished={() =>
             setTimeout(() => {
               setPet(true);

@@ -37,41 +37,41 @@ const Wishes = () => {
 
   return (
     <>
-      <div className="Spotify">
-        <SpotifyPlayer
-          name="Her special website"
-          autoPlay={true}
-          token="BQD0CsTTKuuK_evNFsuHlbG3-36cGHig8qp8XlOqV6PV0ay2BB41eBpgG8y-pDY4RQvMPyyB_019cQfxPNCUx3p9zj_wfID87Cx4-EfkSLh0z32Te_paRqTAyN1Be1-y2XTg_zJnZIiDh8wdgugl2SHz33prIpLsFXtMfmMk3VKoPbD1LsaGdadpGt0H6-Fpp62V_TZtr8EhRKQMltIpxgsw5IyvwYDICStN91qr0Nw5iNQTpg"
-          uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
-          initialVolume={0.1}
-          styles={{
-            activeColor: "#fff",
-            bgColor: "rgb(229, 149, 149)",
-            color: "#fff",
-            loaderColor: "#fff",
-            sliderColor: "#E362A7",
-            sliderHandleColor: "#6F2D76",
-            trackArtistColor: "#fff",
-            trackNameColor: "#fff",
-          }}
-        />
-      </div>
-
-      <div className="App">
-        <div className="App-header">
-          <h1>{text}</h1>
+        <div className="Spotify">
+          <SpotifyPlayer
+            name="Her special website"
+            autoPlay={true}
+            token="BQD0CsTTKuuK_evNFsuHlbG3-36cGHig8qp8XlOqV6PV0ay2BB41eBpgG8y-pDY4RQvMPyyB_019cQfxPNCUx3p9zj_wfID87Cx4-EfkSLh0z32Te_paRqTAyN1Be1-y2XTg_zJnZIiDh8wdgugl2SHz33prIpLsFXtMfmMk3VKoPbD1LsaGdadpGt0H6-Fpp62V_TZtr8EhRKQMltIpxgsw5IyvwYDICStN91qr0Nw5iNQTpg"
+            uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
+            initialVolume={0.1}
+            styles={{
+              activeColor: "#fff",
+              bgColor: "rgb(229, 149, 149)",
+              color: "#fff",
+              loaderColor: "#fff",
+              sliderColor: "#E362A7",
+              sliderHandleColor: "#6F2D76",
+              trackArtistColor: "#fff",
+              trackNameColor: "#fff",
+            }}
+          />
         </div>
-      </div>
 
-      {showButton ? (
-        <div>
-          <button className="big-button" onClick={handleClick}>
-            {"Read Our Chat"}
-          </button>
+        <div className="App">
+          <div className="App-header">
+            <h1>{text}</h1>
+          </div>
         </div>
-      ) : (
-        <Chat />
-      )}
+
+        {showButton ? (
+          <div>
+            <button className="big-button" onClick={handleClick}>
+              {"Read Our Chat"}
+            </button>
+          </div>
+        ) : (
+          <Chat />
+        )}
     </>
   );
 };
