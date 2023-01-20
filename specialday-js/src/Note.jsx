@@ -113,9 +113,9 @@ export const SpeechBubbleB = ({ text, onFinished }) => {
 }
 
 const imgStyle = css`
-  width: 25%;
+  width: 50%;
   height: auto;
-  max-width: 25%;
+  max-width: 50%;
 `;
 
 
