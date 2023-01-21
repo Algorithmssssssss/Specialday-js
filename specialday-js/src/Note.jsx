@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { CharWrapper, WindupChildren, Linebreaker, Effect } from "windups";
 import { css } from "linaria";
 import useComponentSize from "@rehooks/component-size";
-// import Pet from "./pet";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 import img1 from "/src/images/1.png";
@@ -114,9 +113,6 @@ export const SpeechBubbleB = ({ text, onFinished }) => {
     </Linebreaker>
   );
 };
-{
-  /* <img src={"/src/images/1.png"} /> */
-}
 
 const imgStyle = css`
   width: 50%;
@@ -196,7 +192,9 @@ const Chat2 = ({ onFinished }) => {
       )}
       {linesToShow >= 3 && (
         <SpeechBubbleB
-          text={"Happy birthday honey!, I wish for you to be happy because you deserve the whole world as well."}
+          text={
+            "Happy birthday honey!, I wish for you to be happy because you deserve the whole world as well."
+          }
           onFinished={() => setLines(4)}
         />
       )}
@@ -212,7 +210,9 @@ const Chat2 = ({ onFinished }) => {
       )}
       {linesToShow >= 5 && (
         <SpeechBubbleB
-          text={"I am beyond proud of you, for all the hard work that you put in"}
+          text={
+            "I am beyond proud of you, for all the hard work that you put in"
+          }
           onFinished={() =>
             setTimeout(() => {
               setLines(6);
@@ -540,7 +540,7 @@ const Chat2 = ({ onFinished }) => {
         />
       )}
 
-      {linesToShow >= 41 && (
+      {linesToShow >= 40 && (
         <SpeechBubbleB
           text={"Oh, and the wind stops now, so the confetti is backkk hehe"}
           onFinished={() =>
@@ -551,17 +551,6 @@ const Chat2 = ({ onFinished }) => {
           }
         />
       )}
-      {/* {linesToShow >= 9 && (
-        <SpeechBubbleB
-          text={"HAHAHA, okay I'll turn it back off now"}
-          onFinished={() =>
-            setTimeout(() => {
-              setWindOn(0);
-              setLines(10);
-            }, 250)
-          }
-        />
-      )} */}
     </div>
   );
 };

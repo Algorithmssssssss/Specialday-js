@@ -37,41 +37,41 @@ const Wishes = () => {
 
   return (
     <>
-        <div className="Spotify">
-          <SpotifyPlayer
-            name="Her special website"
-            autoPlay={true}
-            token="BQDcDWA43w635etVhnPckeCwocDwA7nwLV8G1fTvIUxpyBpZRjOyLFfkChRFTQsD7heic1UjnCfWKyrVU885LpJ45EnWCJwQBDfspCsBgmOhp2HzXaO1bbAqujW4CzvS6WUxRzTe8eay7tcJX824H8CA0AQ2AmRKlXzJJoQhsVb8X3k_jLFEjGOWA2uNPrcg-cZ0z_jRstPe5muZXbEhN2O246itOgoTzBLIa9IiT0fmgl8zbw"
-            uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
-            initialVolume={0.1}
-            styles={{
-              activeColor: "#fff",
-              bgColor: "rgb(229, 149, 149)",
-              color: "#fff",
-              loaderColor: "#fff",
-              sliderColor: "#E362A7",
-              sliderHandleColor: "#6F2D76",
-              trackArtistColor: "#fff",
-              trackNameColor: "#fff",
-            }}
-          />
-        </div>
+      <div className="Spotify">
+        <SpotifyPlayer
+          name="Her special website"
+          autoPlay={true}
+          token="BQD3-qeTQBO16YAyvVg3amnOK8UvLOblcNJ3chcfFL2yYmohbCEs3fV-OPkRs0Av0egpd0NvqO14IqwqOD0ocDIMTJEmVgkLkS1-Nhp-Httlikb9GToYYl4MxsIdu5l-7s4RFIvhCsfqdMnx6h5tO3fKoWZ_qCxXuHKK3AbZEFLRxX8F7w6TshgcAAo7NT14Xn7L-gKFaNKNCMHOKlr3UQsqEkSqPd5akf3a_YRNMBfRY6bmWA"
+          uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
+          initialVolume={0.1}
+          styles={{
+            activeColor: "#fff",
+            bgColor: "rgb(229, 149, 149)",
+            color: "#fff",
+            loaderColor: "#fff",
+            sliderColor: "#E362A7",
+            sliderHandleColor: "#6F2D76",
+            trackArtistColor: "#fff",
+            trackNameColor: "#fff",
+          }}
+        />
+      </div>
 
-        <div className="App">
-          <div className="App-header">
-            <h1>{text}</h1>
-          </div>
+      <div className="App">
+        <div className="App-header">
+          <h1>{text}</h1>
         </div>
+      </div>
 
-        {showButton ? (
-          <div>
-            <button className="big-button" onClick={handleClick}>
-              {"Read Our Chat"}
-            </button>
-          </div>
-        ) : (
-          <Chat />
-        )}
+      {showButton ? (
+        <div>
+          <button className="big-button" onClick={handleClick}>
+            {"Read Our Chat"}
+          </button>
+        </div>
+      ) : (
+        <Chat />
+      )}
     </>
   );
 };
