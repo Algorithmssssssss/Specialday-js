@@ -5,6 +5,12 @@ import useComponentSize from "@rehooks/component-size";
 // import Pet from "./pet";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
+import img1 from "/src/images/1.png";
+import img2 from "/src/images/2.png";
+import img4 from "/src/images/4.png";
+import img5 from "/src/images/5.png";
+import img6 from "/src/images/6.png";
+
 const chatChar = css`
   @keyframes enter {
     from {
@@ -118,26 +124,35 @@ const imgStyle = css`
   max-width: 50%;
 `;
 
-
 export const SpeechBubbleC = ({ picture, onFinished }) => {
   const ref = useRef(null);
   // const { width } = useComponentSize(ref);
-    const [width25, setWidth25] = useState(0);
+  const [width25, setWidth25] = useState(0);
 
-    useEffect(() => {
-        const img = new Image();
-        img.src = picture;
-        img.onload = () => {
-            setWidth25(img.naturalWidth * 0.25);
-        };
-    }, [picture]);
+  useEffect(() => {
+    const img = new Image();
+    img.src = picture;
+    img.onload = () => {
+      setWidth25(img.naturalWidth * 0.25);
+    };
+  }, [picture]);
 
   return (
+    // <div className={rootStyle} ref={ref}>
+    //     <div className={imgBubble} onFinished={onFinished}>
+    //
+    //     </div>
+    // </div>
+    <Linebreaker width={width25} fontStyle={'24px "Menlo", monospace'}>
       <div className={rootStyle} ref={ref}>
+        <WindupChildren onFinished={onFinished}>
           <div className={imgBubble}>
             <img src={picture} className={imgStyle} />
           </div>
+        </WindupChildren>
       </div>
+      <div></div>
+    </Linebreaker>
   );
 };
 
@@ -154,10 +169,8 @@ const petRoot = css`
 
 const Chat2 = ({ onFinished }) => {
   const [linesToShow, setLinesToShow] = useState(1);
-  const [pet, setPet] = useState(false);
   const { width, height } = useWindowSize();
-
-  console.log(pet);
+  const [windOn, setWindOn] = useState(0);
 
   const setLines = (num) => {
     setTimeout(() => {
@@ -167,29 +180,29 @@ const Chat2 = ({ onFinished }) => {
 
   return (
     <div className={chatRoot}>
-      <Confetti
-        width={width}
-        height={height}
-        numberOfPieces={200}
-        tweenDuration={1000}
+      <Confetti width={width} height={height * 3.5} wind={windOn} />
+      <SpeechBubbleA
+        text={"Here comes my wishes to you my love <3"}
+        onFinished={() => setLines(2)}
       />
-      <SpeechBubbleA text={"Give me hint"} onFinished={() => setLines(2)} />
       <div></div>
       {linesToShow >= 2 && (
         <SpeechBubbleB
-          text={"You can interact with it"}
+          text={
+            "It's the 23rd day of the first month of the 23rd year counting from 2000"
+          }
           onFinished={() => setLines(3)}
         />
       )}
       {linesToShow >= 3 && (
-        <SpeechBubbleA
-          text={"Are u going to code me a little dog?"}
+        <SpeechBubbleB
+          text={"Happy birthday honey!, I wish for you to be happy because you deserve the whole world as well."}
           onFinished={() => setLines(4)}
         />
       )}
       {linesToShow >= 4 && (
         <SpeechBubbleB
-          text={"You are cute as always"}
+          text={"I hope everthing is going well for you with your uni work."}
           onFinished={() =>
             setTimeout(() => {
               setLines(5);
@@ -198,21 +211,357 @@ const Chat2 = ({ onFinished }) => {
         />
       )}
       {linesToShow >= 5 && (
-        <SpeechBubbleC
-
-          picture={"/src/images/1.png"}
+        <SpeechBubbleB
+          text={"I am beyond proud of you, for all the hard work that you put in"}
           onFinished={() =>
             setTimeout(() => {
-              setPet(true);
-            }, 800)
+              setLines(6);
+            }, 250)
           }
         />
       )}
-      {/* {pet && (
-        <div className="petRoot">
-          <Pet />
-        </div>
-        )} */}
+
+      {linesToShow >= 6 && (
+        <SpeechBubbleB
+          text={
+            "and you should also be proud of yourself as well, you really do deserve everything my love."
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(7);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 7 && (
+        <SpeechBubbleB
+          text={
+            "I am sorry if the color is a bit hard to read these words. I am bad with colors, love HAHAHA"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(8);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 8 && (
+        <SpeechBubbleA
+          text={"So let me switch to the other side"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(9);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 9 && (
+        <SpeechBubbleA
+          text={
+            "I hope your prototype is going well, and that everything that you wish for would come true."
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(10);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 10 && (
+        <SpeechBubbleA
+          text={
+            "I am so glad I could spend this day with you. You truly are my favorite person."
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(11);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 11 && (
+        <SpeechBubbleA
+          text={"So let this be your special day my love <3"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(12);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 12 && (
+        <SpeechBubbleA
+          text={
+            "As you could probably tell, the songs are all from your favorite artist, ZACKKK"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(13);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 13 && (
+        <SpeechBubbleA
+          text={
+            "I added that last one in because, it's in one of your favorite show, BROOKLYN NINE NINE"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(14);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 14 && (
+        <SpeechBubbleA
+          text={
+            "I don't think you knew, but I have been listening to Pano on repeat while debugging this website"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(15);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 15 && (
+        <SpeechBubbleA
+          text={"For the past few days HAHAHAHA"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(16);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 16 && (
+        <SpeechBubbleA
+          text={
+            "I hope you like this, and that it doesn't make your eyes hurt too much"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(17);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 17 && (
+        <SpeechBubbleA
+          text={"From trying to read the words"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(18);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 18 && (
+        <SpeechBubbleA
+          text={"Now it's time to add some pictures :3"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(19);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 19 && (
+        <SpeechBubbleA
+          text={"Even when you are outside, all windy"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(20);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 20 && (
+        <SpeechBubbleA
+          text={"You are still beautiful."}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(21);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 21 && (
+        <SpeechBubbleC picture={img6} onFinished={() => setLines(22)} />
+      )}
+      {linesToShow >= 22 && (
+        <SpeechBubbleA
+          text={
+            "Wait, the confetti is too much, let me blow it out for you, honey"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setWindOn(0.07);
+              setLines(23);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 23 && (
+        <SpeechBubbleA
+          text={"Even when you are trying to show me your glass sculpture"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(24);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 24 && (
+        <SpeechBubbleC picture={img1} onFinished={() => setLines(26)} />
+      )}
+      {linesToShow >= 26 && (
+        <SpeechBubbleA
+          text={"You are so adorableee"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(27);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 27 && (
+        <SpeechBubbleA
+          text={"You are so adorableee, and you should know that."}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(28);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 28 && (
+        <SpeechBubbleA
+          text={"Just look at thissss"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(29);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 29 && (
+        <SpeechBubbleC picture={img2} onFinished={() => setLines(30)} />
+      )}
+      {linesToShow >= 30 && (
+        <SpeechBubbleA
+          text={"I am dumping all your pictures here hehehe"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(31);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 31 && (
+        <SpeechBubbleA
+          text={
+            "Because I gatekeep these and only I can see it, and you of course"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(32);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 32 && (
+        <SpeechBubbleC picture={img4} onFinished={() => setLines(33)} />
+      )}
+      {linesToShow >= 33 && (
+        <SpeechBubbleC picture={img5} onFinished={() => setLines(34)} />
+      )}
+      {linesToShow >= 34 && (
+        <SpeechBubbleA
+          text={"But yes my love, I know this is a lot of lines to read"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(35);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 35 && (
+        <SpeechBubbleA
+          text={
+            "I hope it's going to be a great birthdate for you, you are one year from being legal"
+          }
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(36);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 36 && (
+        <SpeechBubbleA
+          text={"To drink in the US"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(37);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 37 && (
+        <SpeechBubbleA
+          text={"So once again, happy birthday my love"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(38);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 38 && (
+        <SpeechBubbleA
+          text={"You mean so much to me, you already know that, and"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(39);
+            }, 250)
+          }
+        />
+      )}
+      {linesToShow >= 39 && (
+        <SpeechBubbleA
+          text={"I love you so so muchh, my favorite person <3"}
+          onFinished={() =>
+            setTimeout(() => {
+              setLines(40);
+            }, 250)
+          }
+        />
+      )}
+
+      {linesToShow >= 41 && (
+        <SpeechBubbleB
+          text={"Oh, and the wind stops now, so the confetti is backkk hehe"}
+          onFinished={() =>
+            setTimeout(() => {
+              setWindOn(0);
+              onFinished();
+            }, 700)
+          }
+        />
+      )}
+      {/* {linesToShow >= 9 && (
+        <SpeechBubbleB
+          text={"HAHAHA, okay I'll turn it back off now"}
+          onFinished={() =>
+            setTimeout(() => {
+              setWindOn(0);
+              setLines(10);
+            }, 250)
+          }
+        />
+      )} */}
     </div>
   );
 };

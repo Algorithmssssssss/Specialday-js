@@ -113,6 +113,7 @@ const Chat = ({ onFinished }) => {
   const [pet, setPet] = useState(false);
   const { width, height } = useWindowSize();
   const [showChat2, setShowChat2] = useState(false);
+  const [recycleConfetti, setRecycleConfetti] = useState(true);
 
   const [showButton, setShowButton] = useState(false);
 
@@ -133,7 +134,12 @@ const Chat = ({ onFinished }) => {
   return (
     <div className={chatRoot} onFinished={() => setShowButton(true)}>
       <div id="firstChat">
-        <Confetti id="confetti" numberOfPieces={100} tweenDuration={1000} />
+        <Confetti
+          id="confetti"
+          numberOfPieces={200}
+          tweenDuration={5000}
+          recycle={recycleConfetti}
+        />
         <SpeechBubbleA text={"Give me hint"} onFinished={() => setLines(2)} />
         <div></div>
         {linesToShow >= 2 && (
@@ -157,6 +163,7 @@ const Chat = ({ onFinished }) => {
             onFinished={() =>
               setTimeout(() => {
                 setPet(true);
+                setRecycleConfetti(false);
                 setTimeout(() => {
                   setShowButton(true);
                 }, 700);
@@ -175,7 +182,7 @@ const Chat = ({ onFinished }) => {
         {showButton && (
           <div>
             <button className="big-button" onClick={handleClick}>
-              {"Read Our Chat"}
+              {"Now it's time for my wishes"}
             </button>
           </div>
         )}

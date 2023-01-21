@@ -41,7 +41,7 @@ const Wishes = () => {
           <SpotifyPlayer
             name="Her special website"
             autoPlay={true}
-            token="BQCKNjLYz6PIK37QBLb8Spxj-joaKHlY4TczQUzMVliG2VBZpPacmwgTFQeewJ916rJZH0M4lrbaThTDZSYYuHRw13OPYCHrClCTsWUkH-visvFRUqEa-URxuHDm9Ti5GD3xb8bZICxxzGWBY0i63He_DpN1JLPCz_vnar88gtUUeHSXji1--ReCKE8bt_oCbNy4_YvYG9zB5_zJ_w0eShJKDCU7vaTeEsnODhw2WrP56tDhqQ"
+            token="BQDcDWA43w635etVhnPckeCwocDwA7nwLV8G1fTvIUxpyBpZRjOyLFfkChRFTQsD7heic1UjnCfWKyrVU885LpJ45EnWCJwQBDfspCsBgmOhp2HzXaO1bbAqujW4CzvS6WUxRzTe8eay7tcJX824H8CA0AQ2AmRKlXzJJoQhsVb8X3k_jLFEjGOWA2uNPrcg-cZ0z_jRstPe5muZXbEhN2O246itOgoTzBLIa9IiT0fmgl8zbw"
             uris={["spotify:playlist:1rNoE1HmIBqLWJhVlIQDp2"]}
             initialVolume={0.1}
             styles={{
