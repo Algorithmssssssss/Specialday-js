@@ -236,7 +236,7 @@ const Chat2 = ({ onFinished }) => {
       {linesToShow >= 7 && (
         <SpeechBubbleB
           text={
-            "I am sorry if the color is a bit hard to read these words. I am bad with colors, love HAHAHA"
+            "I think this color is a bit hard to read. I am bad with colors, love HAHAHA"
           }
           onFinished={() =>
             setTimeout(() => {
