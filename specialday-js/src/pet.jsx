@@ -8,7 +8,7 @@ function Pet() {
 
     const [isWalking, setIsWalking] = useState(true);
     const [x, setX] = useState(0);
-    const [xSpeed, setXSpeed] = useState(0.005);
+    const [xSpeed, setXSpeed] = useState(0.001);
     const [flip, setFlip] = useState(false);
     const petContainerRef = useRef(null);
     function handleMouseEnter() {
