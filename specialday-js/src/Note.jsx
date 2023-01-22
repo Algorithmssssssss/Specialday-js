@@ -185,7 +185,7 @@ const Chat2 = ({ onFinished }) => {
       {linesToShow >= 2 && (
         <SpeechBubbleB
           text={
-            "It's the 23rd day of the first month of the 23rd year counting from 2000"
+            "It's finally the 23rd, your birthdayyyy!!"
           }
           onFinished={() => setLines(3)}
         />

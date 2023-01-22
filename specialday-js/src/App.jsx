@@ -17,7 +17,7 @@ export default function App() {
 }
 
 const Wishes = () => {
-  const [text] = useWindupString("Happy Birthday, my love <3", {
+  const [text] = useWindupString("Happy Birthday, my Cawlynnn <3", {
     pace: (char) => (char === " " ? 100 : 100),
   });
 
