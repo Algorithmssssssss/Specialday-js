@@ -178,7 +178,7 @@ const Chat2 = ({ onFinished }) => {
     <div className={chatRoot}>
       <Confetti width={width} height={height * 3.5} wind={windOn} />
       <SpeechBubbleA
-        text={"Here comes my wishes to you my love <3"}
+        text={"Here comes my wishes to you honey <3"}
         onFinished={() => setLines(2)}
       />
       <div></div>
@@ -511,7 +511,7 @@ const Chat2 = ({ onFinished }) => {
       )}
       {linesToShow >= 37 && (
         <SpeechBubbleA
-          text={"So once again, happy birthday my love"}
+          text={"So once again, Happy birthday my love <3"}
           onFinished={() =>
             setTimeout(() => {
               setLines(38);
